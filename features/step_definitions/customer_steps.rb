@@ -19,4 +19,4 @@ end
   
 Então(/^esse cadastro deve ser exibida na lista de clientes$/) do
     pending # Write code here that turns the phrase above into concrete actions
- end
+end
