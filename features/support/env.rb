@@ -3,6 +3,7 @@ require 'capybara/cucumber'
 require 'rspec'
 require 'selenium-webdriver'
 require 'site_prism'
+require 'special_char_remover'
 
 require_relative '../pages/sections'
 require_relative 'helpers'

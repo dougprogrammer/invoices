@@ -7,5 +7,6 @@ gem 'rspec'
 gem 'selenium-webdriver'
 gem 'site_prism'
 gem 'faker'
+gem 'special_char_remover'
 
 
