@@ -8,6 +8,7 @@ Funcionalidade: Cadastro de clientes
 	Contexto: Acesso
 		Dado que estou logado
 		
+	@insert_client
 	Cenário: Cadastro de novo cliente
 
 		Quando faço o cadastro do seguinte cliente:

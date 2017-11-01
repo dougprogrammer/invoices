@@ -47,7 +47,6 @@ end
   
 Então(/^esse cadastro deve ser exibida na lista de clientes$/) do
     @customer_page.search(@data_customer['Email'])
-    sleep 2
         
     puts @customer_page.table_body.text
     
@@ -84,9 +83,13 @@ end
 
 
 Quando(/^confirmo a solicitação de exclusão$/) do 
-
+    @customer_page.modal.yes.click
 end
 
 Quando(/^esse cliente não deve ser exibido na lista$/) do 
-
+    #he always insert client but after remove the same
+    @customer_page.search(@data_customer['Email'])
+    
+    expect(@customer_page.search_alert.text
+        ).to eql "\"#{@customer['Email']}\" não encontrado."
 end

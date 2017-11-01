@@ -3,6 +3,7 @@ class CustomerPage < SitePrism::Page
 
 	section :nav, Sections::NavBar, 'div[id=navbar]'
 	section :sweet_alert, Sections::SweetAlert, 'showSweetAlert'
+	section :modal, Sections::ModalDialog, '.modal-dialog'
 
 	element :new_customer, 'button[id*=insert]'
 	element :name, 'input[name=name]'
@@ -17,6 +18,7 @@ class CustomerPage < SitePrism::Page
 
 	element :search_field, 'input[name=search]'
 	element :search_submit, 'button[id*=search]'
+	element :search_alert, '.alert-warning'
 
 	element :table_body, '#dataview-table tbody'
 	#ele vai trazer uma coleção de tr

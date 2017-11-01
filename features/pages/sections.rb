@@ -2,7 +2,7 @@
 
 
 module Sections
-	class NabBar < SitePrism::Section
+	class NavBar < SitePrism::Section
 		element :user_menu, '#navbar #usermenu'
 		element :logout, '#navbar #menu-items a[href$=logout]'
 
@@ -14,6 +14,10 @@ module Sections
 	class SweetAlert < SitePrism::Section
 		elements :content, 'p'
 		element :ok, 'button[class=con firm]'
+	end
+	class ModalDialog < SitePrism::Section
+		element :yes, 'button[data--bb-handler="sucess"]'
+		element :nos, 'button[data--bb--handler="danger"]'	
 	end
 	
 end
