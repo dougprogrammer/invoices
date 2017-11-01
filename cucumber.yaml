@@ -1,0 +1,9 @@
+---
+default: -p chrome
+chrome: BROWSER=chrome -p progress
+firefox: BROWSER=firefox -p progress
+headless: BROWSER=headless -p output -p html
+ie: BROWSER=ie -p progress
+progress: --format progress
+html: --format html --out=reports/feature.html
+json: --format json --out=reports/feature.json

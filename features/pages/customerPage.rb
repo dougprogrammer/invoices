@@ -1,38 +1,8 @@
-
-class LoginPage < SitePrism::Page
-	set_url '/login'
-	element :email, '#email'
-	element :password, 'input[type=password]'
-	element :sign_in, 'button[id*=btnLogin]'
-	element :alert_error, '#login=errors'
-
-	def do_login(user_login,password_login)
-		self.email.set user_login		  
-		self.password.set password_login
-		self.sign_in.click
-	end
-	
-end
-
-class DashPage < SitePrism::Page
-	element :title, '#content h3[id=page_title]'
-	element :hello_msg, '#content #title_row p'
-	
-end
-
-class NabBar < SitePrism::Page
-	element :user_menu, '#navbar #usermenu'
-	element :logout, '#navbar #menu-items a[href$=logout]'
-
-	def do_logout
-		self.user_menu.click
-		self.logout.click
-	end
-
-end
-
 class CustomerPage < SitePrism::Page
 	set_url '/customers'
+
+	section :nav, Sections::NavBar, 'div[id=navbar]'
+	section :sweet_alert, Sections::SweetAlert, 'showSweetAlert'
 
 	element :new_customer, 'button[id*=insert]'
 	element :name, 'input[name=name]'
@@ -73,6 +43,15 @@ class CustomerPage < SitePrism::Page
 	def search(email)
 		self.search_field.set email
 		self.search_submit.click
+	end	
+
+	def remove(customer)
+		self.wait_for_table_items
+		self.table_items.each do |line|
+			if line.text.include?(customer['Email'])
+				line.find('#delete-button').click
+			end
+		end
 	end	
 
 end

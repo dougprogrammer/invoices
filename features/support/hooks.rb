@@ -1,12 +1,20 @@
+Before('@login') do
+	@login = LoginPage.new
+	@login.load
+	@dash.nav.do_logout
+end
+
 After('@logout') do
-		
-	find('#navbar #usermenu').click
-	find('#navbar #menu-items a[href$=logout]').click
+	dash.nav.logout
+end
 
-	@nav = NavBar.new
+After do |scenario| 
+	@file_name = scenario.name.gsub('','_')
 
-	expect(@nav.user_menu.text).to eql @user['Email']
+	@file_name = @file_name.gsub(',''').gsub('(','').delete(')').delete('#')
 
-	@nvc.user_menu.click
-	@nav.logout.click
+	@target = "reports/screenshots/#{@file_name.downscase!}.png"
+
+	page.save_screenshot(@target)
+	embed(@target, 'image/png', 'Clique aqui para ver a evidência')
 end

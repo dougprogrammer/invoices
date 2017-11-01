@@ -32,5 +32,17 @@ Funcionalidade: Cadastro de clientes
 			| Obs     | bla bla bla          |
 			| Info    | Sim         		 |
 		Mas esse cliente já está cadastrado
-		Então esse cadastro não deve ser exibido na lista de clientes
-			E vejo a seguinte mensagem de alerta "Já existe um cliente para este email"
+		Então devo ver a mensagem de alerta:
+		"""
+		Já existe um cliente cadastrado com o email informado!
+		"""
+		E deve exibir somente 1 cliente na lista
+		#Então esse cadastro não deve ser exibido na lista de clientes
+			#E vejo a seguinte mensagem de alerta "Já existe um cliente para este email"
+
+	@delete
+	Cenário: Remover cliente
+
+		Quando solicito a exclusão de 1 cliente
+			E confirmo a solicitação de exclusão
+		Então esse cliente não deve ser exibido na lista

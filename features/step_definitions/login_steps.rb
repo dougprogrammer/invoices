@@ -14,6 +14,10 @@ end
   
 Então(/^vejo o dashboard com a mensagem "([^"]*)" usuários$/) do |hello|
    expect(@dash_page.title.text).to eql 'Dashboard'
+
+   #user sections
+   expect(@dash.nav.usermenu.text).to eql @user['Email']
+
    expect(@dash_page.hello_msg.text).to have_content "#{hello} #{@user['Nome']}" 
 end
 

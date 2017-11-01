@@ -12,8 +12,8 @@ Dado(/^que estou logado$/) do
 end
   
 Quando(/^faço o cadastro do seguinte cliente:$/) do |table|
-    @customer = table.rows_hash
-    @customer_page.save(@customer)
+    @data_customer = table.rows_hash
+    @customer_page.save(@data_customer)
    
 
     #combobox, dropdown
@@ -42,24 +42,51 @@ Quando(/^faço o cadastro do seguinte cliente:$/) do |table|
 end
 
 Quando(/^esse cliente já está cadastrado$/) do
-    @customer_page.save(@customer)
+    @customer_page.save(@data_customer)
 end
   
 Então(/^esse cadastro deve ser exibida na lista de clientes$/) do
-    @customer_page.search(@customer['Email'])
+    @customer_page.search(@data_customer['Email'])
     sleep 2
         
     puts @customer_page.table_body.text
     
     target = @customer_page.table_body.text
 
-    expect(target).to have_content @customer['Nome']
-    expect(target).to have_content @customer['Email']
-    expect(target).to have_content @customer['Celular']
+    expect(target).to have_content @data_customer['Nome']
+    expect(target).to have_content @data_customer['Email']
+    expect(target).to have_content @data_customer['Celular']
+end
+
+Então(/^devo ver a mensagem de alerta:$/) do |message|
+    expect(@customer_page.sweet_alert.content.first.text 
+    ).to eql message
+    @customer_page.sweet_alert.ok.click
+end
+
+Então(/^deve exibir somente 1 cliente na lista$/) do |quantidy|
+    @customer_page.search(@data_customer['Email'])
+    expect(@customer_page.table_items.size).to eql 1
 end
 
 Então(/^esse cadastro não deve ser exibido na lista de clientes$/) do
     #dataview-table tbody tr if is equal one register 1 ==true elsif more 1 on menor that zero false
-    @customer_page.search(@customer['Email'])
+    @customer_page.search(@data_customer['Email'])
     expect(@customer_page.table_items.size).to eql 1
+end
+
+#delete
+Quando(/^solicito a exclusão de 1 cliente$/) do |arg1|
+    puts @customer = new_customer
+    
+    @customer_page.remove(@customer)
+end
+
+
+Quando(/^confirmo a solicitação de exclusão$/) do 
+
+end
+
+Quando(/^esse cliente não deve ser exibido na lista$/) do 
+
 end
