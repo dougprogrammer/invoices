@@ -1,3 +1,4 @@
+#encoding: utf-8
 
 Dado(/^que estou logado$/) do
     @login_page = LoginPage.new
