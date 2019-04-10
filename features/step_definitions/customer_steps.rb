@@ -5,11 +5,14 @@ Dado(/^que estou logado$/) do
     @dash_page = DashPage.new
     @customer_page = CustomerPage.new
 
-    @login_page.load
+    visit($environment)
+	
+    #@login_page.load
     @login_page.do_login('kato.danzo@qaninja.io', 'secret')
     @dash_page.wait_for_title
 	
-    @customer_page.load
+    binding.pry
+    #@customer_page.load
 end
   
 Quando(/^faço o cadastro do seguinte cliente:$/) do |table|
