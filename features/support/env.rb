@@ -14,6 +14,7 @@ World(Helpers)
 
 $browser = ENV['BROWSER']
 $headless = ENV['HEADLESS']
+$env = ENV['ENV']
 
 Capybara.register_driver :selenium do |app|
 
@@ -53,9 +54,17 @@ Capybara.register_driver :selenium do |app|
 
 end
 
+if $env.eql?('dev')
+  $environment = "https:///"
+elsif $env.eql?('prod')
+  $environment = "http://"
+else 
+  $environment = "https://"
+end
+
 Capybara.configure do |config|
   config.default_driver = :selenium
-  config.app_host = 'https://ninjainvoices.herokuapp.com'
+  #config.app_host = 'https://ninjainvoices.herokuapp.com'
 end
 
 Capybara.default_max_wait_time = 5
