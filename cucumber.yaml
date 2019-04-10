@@ -7,3 +7,6 @@ ie: BROWSER=ie -p progress -p html -p json
 progress: --format progress
 html: --format html --out=reports/features.html
 json: --format json --out=reports/features.json
+
+dev: ENV=dev
+prod: ENV=prod
